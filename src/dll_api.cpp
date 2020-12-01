@@ -1,7 +1,7 @@
 /*
  *  This file is part of WinSparkle (https://winsparkle.org)
  *
- *  Copyright (C) 2009-2019 Vaclav Slavik
+ *  Copyright (C) 2009-2020 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -174,6 +174,24 @@ WIN_SPARKLE_API void __cdecl win_sparkle_set_app_details(const wchar_t *company_
     CATCH_ALL_EXCEPTIONS
 }
 
+WIN_SPARKLE_API void __cdecl win_sparkle_set_http_header(const char *name, const char *value)
+{
+    try
+    {
+        Settings::SetHttpHeader(name, value);
+    }
+    CATCH_ALL_EXCEPTIONS
+}
+
+WIN_SPARKLE_API void __cdecl win_sparkle_clear_http_headers()
+{
+    try
+    {
+        Settings::ClearHttpHeaders();
+    }
+    CATCH_ALL_EXCEPTIONS
+}
+
 WIN_SPARKLE_API void __cdecl win_sparkle_set_app_build_version(const wchar_t *build)
 {
     try
@@ -188,6 +206,15 @@ WIN_SPARKLE_API void __cdecl win_sparkle_set_registry_path(const char *path)
     try
     {
         Settings::SetRegistryPath(path);
+    }
+    CATCH_ALL_EXCEPTIONS
+}
+
+WIN_SPARKLE_API void __cdecl win_sparkle_set_config_methods(win_sparkle_config_methods_t *config_methods)
+{
+    try
+    {
+        Settings::SetConfigMethods(config_methods);
     }
     CATCH_ALL_EXCEPTIONS
 }
@@ -311,6 +338,33 @@ WIN_SPARKLE_API void __cdecl win_sparkle_set_update_cancelled_callback(win_spark
     try
     {
         ApplicationController::SetUpdateCancelledCallback(callback);
+    }
+    CATCH_ALL_EXCEPTIONS
+}
+
+WIN_SPARKLE_API void __cdecl win_sparkle_set_update_skipped_callback(win_sparkle_update_skipped_callback_t callback)
+{
+    try
+    {
+        ApplicationController::SetUpdateSkippedCallback(callback);
+    }
+    CATCH_ALL_EXCEPTIONS
+}
+
+WIN_SPARKLE_API void __cdecl win_sparkle_set_update_postponed_callback(win_sparkle_update_postponed_callback_t callback)
+{
+    try
+    {
+        ApplicationController::SetUpdatePostponedCallback(callback);
+    }
+    CATCH_ALL_EXCEPTIONS
+}
+
+WIN_SPARKLE_API void __cdecl win_sparkle_set_update_dismissed_callback(win_sparkle_update_dismissed_callback_t callback)
+{
+    try
+    {
+        ApplicationController::SetUpdateDismissedCallback(callback);
     }
     CATCH_ALL_EXCEPTIONS
 }
